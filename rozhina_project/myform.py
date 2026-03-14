@@ -4,7 +4,7 @@ import re
 
 @post('/home', method='post')
 def my_form():
-    pattern = r'^[A-Za-z0-9]([A-Za-z0-9._-]{0,62}[A-Za-z0-9])?@[A-Za-z0-9]+([-.][A-Za-z0-9]+)*\.[A-Za-z]{2,}$'
+    pattern = r'^[A-Za-z0-9]([-._]?[A-Za-z0-9]){2,31}@[A-Za-z0-9]([-.]?[A-Za-z0-9]){1,39}\.[A-Za-z]{2,7}$'
     mail = request.forms.get('ADRESS')
     name = request.forms.get('USERNAME')
     today = date.today().strftime("%Y-%m-%d")
