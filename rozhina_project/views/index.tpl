@@ -29,8 +29,8 @@
 </div>
 <h3> Ask a Question </h3>
 <form action="/home" method="post">
-        <p><textarea rows="2" cols="50" name="QUEST" placeholder="Your question" style="resize:none;" required></textarea></p> 
-        <p><input type="text" size="50" name="USERNAME" placeholder="Your username" style="border: 1px solid gray;" maxlength="100" required></p>
-        <p><input type="text" size="50" name="ADRESS" placeholder="Your email" style="border: 1px solid gray;" maxlength="154" required></p>
+        <p><textarea rows="2" cols="50" name="QUEST" placeholder="Your question" style="resize:none;" minlength="10" maxlength="300" required></textarea></p> 
+        <p><input type="text" size="50" name="USERNAME" placeholder="Your username" style="border: 1px solid gray;" minlength="3" maxlength="100" required></p>
+        <p><input type="text" size="50" name="ADRESS" placeholder="Your email" style="border: 1px solid gray;" minlength="9" maxlength="151" required></p>
         <p><input type="submit" value="Send" class="btn btn-default"></p>
 </form>
