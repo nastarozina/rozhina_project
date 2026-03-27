@@ -16,6 +16,6 @@ def my_form():
         return "Error: Uncorrect username (contains only spaces)"
     if (question.isspace()):
         return "Error: Uncorrect question (contains only spaces)"
-    questions[mail] = question
+    questions[mail] = [name, question]
     pdb.set_trace()
     return "Thanks, %s! The answer will be sent to the mail %s. Access Date: %s" % (name, mail, today)
