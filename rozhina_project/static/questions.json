@@ -1,0 +1,17 @@
+[
+    {
+        "mail": "rozhina@gmail.com",
+        "name": "Anna",
+        "questions": [
+            "Where is my Bottle?",
+            "Who are you?"
+        ]
+    },
+    {
+        "mail": "Sofka_Konst@mail.ru",
+        "name": "Sofya",
+        "questions": [
+            "Who are you?"
+        ]
+    }
+]
