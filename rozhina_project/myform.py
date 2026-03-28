@@ -7,19 +7,30 @@ with open(r'static\questions.json', 'r') as questions_data:
     questions = json.load(questions_data)
 @post('/home', method='post')
 def my_form():
-    pattern = r'^[A-Za-z0-9]([-._]?[A-Za-z0-9]){2,31}@[A-Za-z0-9]([-.]?[A-Za-z0-9]){1,39}\.[A-Za-z]{2,7}$'
-    mail = request.forms.get('ADRESS').strip()
-    question = request.forms.get('QUEST').strip()
-    name = request.forms.get('USERNAME').strip()
+    pattern_email = r'^[A-Za-z0-9]([-._]?[A-Za-z0-9]){2,31}@[A-Za-z0-9]([-.]?[A-Za-z0-9]){1,39}\.[A-Za-z]{2,7}$'
+    pattern_name = r'^[A-Za-z0-9]{3,100}$'
+    pattern_question = r'^[^А-Яа-яЁё]*[A-Za-z][^А-Яа-яЁё]*$'
+    mail = request.forms.getunicode('ADRESS').strip().lower()
+    question = request.forms.getunicode('QUEST').strip().lower()
+    name = request.forms.getunicode('USERNAME').strip()
+    i = 0
+    if not re.match(pattern_email, mail):
+        return "Error: Invalid email format"
+    if not re.match(pattern_name, name) or name == "" or name.isdigit():
+        return "Error: Invalid username format"
+    
+    if not re.match(pattern_question, question):
+        return "Error: Invalid question format"
+
+    words = question.split(" ")
+    while i < len(words):
+        if words[i] == '':
+            words.remove(words[i])
+            continue
+        i = i + 1
+    question = " ".join(words)
     today = date.today().strftime("%Y-%m-%d")
     already_question = True
-    if not re.match(pattern, mail):
-        return "Error: Invalid email format"
-    if (name.isspace()):
-        return "Error: Uncorrect username (contains only spaces)"
-    if (question.isspace()):
-        return "Error: Uncorrect question (contains only spaces)"
-    
     user_entry = next((item for item in questions if item["mail"] == mail), None)
 
     if user_entry:
@@ -34,9 +45,10 @@ def my_form():
             "name": name,
             "questions": [question]
         }
+        already_question = False
         questions.append(new_entry)
-    with open(r'static\questions.json', 'w') as outfile:
-        json.dump(questions, outfile, indent=4)
+    with open(r'static\questions.json', 'w') as questions_data:
+        json.dump(questions, questions_data, indent=4)
     if already_question:
          return "This question has already been asked, %s. Please wait for a response" % (name)
     return "Thanks, %s! The answer will be sent to the mail %s. Access Date: %s" % (name, mail, today)

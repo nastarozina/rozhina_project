@@ -3,15 +3,15 @@
         "mail": "rozhina@gmail.com",
         "name": "Anna",
         "questions": [
-            "Where is my Bottle?",
-            "Who are you?"
+            "where is my bottle?",
+            "who are you?"
         ]
     },
     {
-        "mail": "Sofka_Konst@mail.ru",
-        "name": "Sofya",
+        "mail": "sofka_konst@mail.ru",
+        "name": "Anastasia",
         "questions": [
-            "Who are you?"
+            "who are you?"
         ]
     }
 ]
