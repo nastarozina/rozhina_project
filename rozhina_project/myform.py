@@ -1,20 +1,19 @@
 from bottle import post, request
 from datetime import date
 import re
-import pdb
 import json
+import myform_mail
 with open(r'static\questions.json', 'r') as questions_data:
     questions = json.load(questions_data)
 @post('/home', method='post')
 def my_form():
-    pattern_email = r'^[A-Za-z0-9]([-._]?[A-Za-z0-9]){2,31}@[A-Za-z0-9]([-.]?[A-Za-z0-9]){1,39}\.[A-Za-z]{2,7}$'
     pattern_name = r'^[A-Za-z0-9]{3,100}$'
     pattern_question = r'^[^А-Яа-яЁё]*[A-Za-z][^А-Яа-яЁё]*$'
     mail = request.forms.getunicode('ADRESS').strip().lower()
     question = request.forms.getunicode('QUEST').strip().lower()
     name = request.forms.getunicode('USERNAME').strip()
     i = 0
-    if not re.match(pattern_email, mail):
+    if not myform_mail.check_email(mail):
         return "Error: Invalid email format"
     if not re.match(pattern_name, name) or name == "" or name.isdigit():
         return "Error: Invalid username format"

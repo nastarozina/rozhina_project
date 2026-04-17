@@ -13,5 +13,26 @@
         "questions": [
             "who are you?"
         ]
+    },
+    {
+        "mail": "rozhinaanasteisha@yandex.ru",
+        "name": "Sofya",
+        "questions": [
+            "how are you?"
+        ]
+    },
+    {
+        "mail": "cat-chudik@mail.com",
+        "name": "Sofya",
+        "questions": [
+            "where is bottle?"
+        ]
+    },
+    {
+        "mail": "nastya.rozina@yandex.ru",
+        "name": "Sofya",
+        "questions": [
+            "where is bottle?"
+        ]
     }
 ]
